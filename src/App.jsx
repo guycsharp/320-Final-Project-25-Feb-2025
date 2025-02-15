@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
-import RoutesCharacterSelection from './navigation/RoutesCharacterSelection';
-
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import CharacterList from './components/CharacterList';
+import CharacterDetails from './components/CharacterDetails';
+// import './App.css';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-
-  const addToCart = (rental) => {
-    setCartItems([...cartItems, rental]);
-  };
-
   return (
-    <Router> {/* Wrap the entire component tree in Router */}
-      <div className="app-container">
-
-        <RoutesCharacterSelection />
-      </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={CharacterList} />
+        <Route path="/character/:id" component={CharacterDetails} />
+      </Switch>
     </Router>
   );
 }
